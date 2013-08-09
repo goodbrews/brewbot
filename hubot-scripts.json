@@ -3,5 +3,6 @@
   "brewerydb.coffee",
   "keep-alive.coffee",
   "redis-brain.coffee",
-  "shipit.coffee"
+  "shipit.coffee",
+  "travis.coffee"
 ]
