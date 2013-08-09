@@ -1,4 +1,5 @@
 [
+  "auth.coffee",
   "brewerydb.coffee",
   "keep-alive.coffee",
   "redis-brain.coffee",

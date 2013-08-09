@@ -18,7 +18,10 @@ module.exports = (robot) ->
     msg.send "Server time is: #{new Date()}"
 
   robot.respond /DIE$/i, (msg) ->
-    if robot.auth.hasRole(msg.message.user, 'admin')
+    name = msg.message.user.name
+    user = robot.brain.userForName(name)
+
+    if robot.Auth.hasRole(name, 'brewmaster')
       msg.send "Goodbye, cruel world."
       process.exit 0
     else
