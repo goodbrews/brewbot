@@ -68,7 +68,9 @@ module.exports = (robot) ->
       author       = payload.author_name
       compare_url  = payload.compare_url
 
-      robot.send user, "Build #{build_status} (#{build_url}) on #{branch} with commit #{commit_sha} by #{author} (changes: #{compare_url})"
+      message = "Build #{build_status} (#{build_url}) on #{branch} with commit #{commit_sha} by #{author} (changes: #{compare_url})"
+
+      robot.notice user, message
 
     catch error
       console.log "Travis hook error: #{error}. Payload: #{req.body.payload}"

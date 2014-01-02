@@ -24,9 +24,9 @@
   },
 
   "dependencies": {
-    "hubot":         ">= 2.6.0 < 3.0.0",
-    "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-irc": "~0.1.17",
+    "hubot":         "2.7.1",
+    "hubot-scripts": " 2.5.7",
+    "hubot-irc": "0.1.24",
     "gitio": "1.0.1",
     "mongodb": "*",
     "yelp": "0.1.1"
