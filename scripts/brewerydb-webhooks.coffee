@@ -32,11 +32,13 @@ module.exports = (robot) ->
     key = query.key
 
     if key == crypto.createHash('sha1').update(process.env.BREWERYDB_API_KEY + nonce)
-      attribute        = query.attribute
-      attribute_id     = query.attributeId
-      action           = query.action.replace(/(\w+)e?$/, "$1ed")
-      sub_action       = query.subAction if query.subAction
-      sub_attribute_id = query.subAttributeId if query.subAttributeId
+      payload = qs.parse(req.body.payload)
+
+      attribute        = payload.attribute
+      attribute_id     = payload.attributeId
+      action           = payload.action.replace(/(\w+)e?$/, "$1ed")
+      sub_action       = payload.subAction if payload.subAction
+      sub_attribute_id = payload.subAttributeId if payload.subAttributeId
       url = "http://www.brewerydb.com/#{attribute}/#{attribute_id}"
 
       message = "We just got an update from BreweryDB! A"
@@ -49,6 +51,8 @@ module.exports = (robot) ->
 
       if robot.adapter.bot?.Room?
         robot.adapter.bot.Room(user.room).sound "trombone", (err, data) =>
-          console.log "campfire error: #{err}" if err
+          console.log "IRC error: #{err}" if err
 
       res.end "Webhook notification sent"
+    else
+      res.end "Bad key/nonce pair sent."
